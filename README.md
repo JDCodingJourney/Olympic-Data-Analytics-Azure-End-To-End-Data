@@ -30,12 +30,12 @@ Complete ETL pipeline for Tokyo 2021 Olympic data using Microsoft Azure services
 - Medal aggregations
 - Business metrics
 
-## Project Structure
-
-├── data/raw/ # Raw CSV files
-├── notebooks/ # Databricks PySpark code
-├── sql/ # Synapse Analytics queries
-└── docs/ # Documentation
+Project Structure
+├── data/
+│   └── raw/           # Raw CSV files
+├── notebooks/         # Databricks PySpark code
+├── sql/               # Synapse Analytics queries
+└── docs/              # Documentation
 
 
 ## Author
