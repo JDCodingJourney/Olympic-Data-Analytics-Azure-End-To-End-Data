@@ -1,7 +1,7 @@
 # Olympic Data Analytics Pipeline - End to End Data Engineering Project
 
 ## Project Overview
-Complete ETL pipeline for Tokyo 2020 Olympic data using Microsoft Azure services.
+Complete ETL pipeline for Tokyo 2021 Olympic data using Microsoft Azure services.
 
 ## Architecture
 - **Data Source**: Tokyo 2020 Olympic Data (CSV files)
