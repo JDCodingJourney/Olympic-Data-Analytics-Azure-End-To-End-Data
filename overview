@@ -1,0 +1,44 @@
+## Dataset: Tokyo 2021 Olympics
+
+This project uses the official dataset of the Tokyo 2020 (2021) Olympic Games, available on Kaggle. The data is structured across five files and provides a solid foundation for an ETL pipeline, requiring schema standardization, data type conversions, and relational joins.
+
+**Source**: [2021 Olympics in Tokyo - Kaggle](https://www.kaggle.com/datasets/arjunprasadsarkhel/2021-olympics-in-tokyo)
+
+### Dataset Files
+
+| File | Rows | Columns | Description |
+|------|------|---------|-------------|
+| **Athletes.xlsx** | 11,085 | 3 | Participating athletes: name, country, discipline |
+| **Coaches.xlsx** | 394 | 4 | Coaches: name, country, discipline, event |
+| **EntriesGender.xlsx** | 46 | 4 | Gender participation: discipline, female, male, total |
+| **Medals.xlsx** | 93 | 7 | Medal tally: rank, country, gold, silver, bronze, total, rank by total |
+| **Teams.xlsx** | 743 | 4 | Teams: team name, discipline, country, event |
+
+### Key Relationships
+
+- **Discipline** serves as the central key connecting athletes, coaches, teams, and gender statistics.
+- **Country** links the medal tally to athletes and coaches for performance analysis.
+
+### Data Quality Notes
+
+- The **EntriesGender.xlsx** file contains numeric columns (`Female`, `Male`, `Total`) that are loaded as strings. These require explicit casting to integer types during transformation.
+- The medal tally column is named `Team/NOC` in the original file and is renamed to `Team_Country` for clarity.
+- All CSV files use a **semicolon (`;`)** as the delimiter, which must be handled during ingestion.
+
+### Business Metrics Derived
+
+- **Medal efficiency**: ratio of gold medals to total medals per country
+- **Gender balance**: percentage of female and male participants per discipline
+- **Coach-to-athlete ratio**: number of coaches per discipline and country
+- **Participation concentration**: distribution of athletes across disciplines
+- **Team performance**: correlation between team size and medal count
+
+### Transformations Applied
+
+| Issue | Transformation |
+|-------|----------------|
+| Semicolon delimiter | Specify `.option("delimiter", ";")` during read |
+| Numeric columns as strings | Cast to `IntegerType` for `Female`, `Male`, `Total` |
+| Column name with slash | Rename `Team/NOC` to `Team_Country` |
+| Multiple related files | Perform joins using `Discipline` and `Country` keys |
+| Redundant columns | Select only relevant fields for analytical tables |
